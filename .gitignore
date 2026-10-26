@@ -47,4 +47,6 @@ next-env.d.ts
 *.db-shm
 
 # keep the env template
+.vercel
+.env*
 !.env.example

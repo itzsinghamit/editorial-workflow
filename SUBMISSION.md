@@ -3,7 +3,7 @@
 ## Links
 
 - **GitHub repository:** https://github.com/itzsinghamit/editorial-workflow
-- **Live application:** `<deployed URL>`
+- **Live application:** https://editorial-workflow-orcin.vercel.app
 
 ## Notes for the reviewer
 

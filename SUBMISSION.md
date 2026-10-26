@@ -44,7 +44,7 @@
 | 2 | Sections | Done | Create, edit, archive, restore. Archived sections are hidden from default views and keep their data. |
 | 3 | Articles inside sections | Done | Every article has one section, a title, a body and an author. Writers can only create in assigned sections. |
 | 4 | Article lifecycle with rules | Done | Full state machine, self-approval blocked, editing approved/scheduled returns to review, published content immutable, revisions with their own path. Revision scheduling is the one thing I left out (revisions publish immediately). |
-| 5 | Section assignments | Done | Many-to-many assignments managed by editors; writers get their own section and article lists. |
+| 5 | Section assignments | Done | Many-to-many assignments managed by editors. Writers see only their assigned sections, and the sidebar's **My articles** link opens one list of every piece they have written. |
 | 6 | Finding articles | Done | Search over title/body, section/status/author filters, three sorts and pagination all run in SQL; the total count is returned. |
 | 7 | Acting on many articles at once | Done | Bulk schedule/unpublish returns a per-article result with reasons; calendar CSV export. |
 | 8 | Dashboard | Done | Four headline numbers, status and section breakdowns, eight-week published-per-week chart. |

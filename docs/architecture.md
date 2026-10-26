@@ -1,5 +1,7 @@
 # Architecture
 
+The short version, for someone with five minutes and the repository open.
+
 ## The moving pieces
 
 There are three:
@@ -72,3 +74,12 @@ How they talk:
 - **Per-passage comments, diffs, public preview links, tagging, payment
   tracking.** These are the brief's optional stretch items; I stopped at the
   ten required goals so that they would be solid rather than half-done.
+
+## If I built it again
+
+I would keep the single-process shape and the append-only event table. I would
+change two things: move the permission checks from "called at the top of each
+action" to a wrapper that every action has to go through, because right now a
+new action that forgets the call would be a silent hole; and give revisions the
+same content-snapshot treatment as articles, so the timeline can show what the
+body looked like at each step instead of only that a change happened.

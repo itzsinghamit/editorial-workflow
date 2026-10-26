@@ -1,10 +1,12 @@
 # Editorial Workflow
 
-A newsroom editorial system: writers draft inside the sections they are assigned
-to, an editor who did not write the piece approves it, and nothing goes live — or
-changes after going live — without leaving a permanent trace.
+Newsroom tool for the take-home brief in [`docs/assignment.md`](docs/assignment.md).
 
-Built for the take-home brief in [`docs/assignment.md`](docs/assignment.md).
+Writers draft in the sections they are assigned to. An editor who did not write
+the piece signs it off. Once an article is published it stops being editable,
+and every move (submit, approve, schedule, publish, unpublish, comment, open a
+revision) leaves a row in an append-only log that nobody can rewrite, me
+included.
 
 ## What it does
 
@@ -93,11 +95,15 @@ still complete an approval flow.
 
 ## Deployment
 
-1. Create a Turso database and copy its URL and token.
-2. Set `DATABASE_URL` and `DATABASE_AUTH_TOKEN` locally and run
-   `npm run db:push`, then `npm run db:seed` against it.
-3. Import the repository into Vercel and add the same two environment variables.
-4. Deploy.
+This one is deployed from the CLI rather than from a GitHub integration, so a
+push to `main` does not deploy by itself. Every release is `vercel --prod`.
+
+1. Create the Turso database and take its URL and token.
+2. Put both in `.env.local`, then run `npm run db:push` and `npm run db:seed`
+   against it.
+3. `vercel link` once, then add `DATABASE_URL` and `DATABASE_AUTH_TOKEN` as
+   environment variables for Production and Preview.
+4. `vercel --prod`.
 
 `.env*` files are git-ignored; only `.env.example` is committed.
 
@@ -109,8 +115,12 @@ still complete an approval flow.
 - [`docs/decisions.md`](docs/decisions.md)
 - [`docs/ai-prompts.md`](docs/ai-prompts.md)
 
-## A note on AI
+## On AI
 
-AI assistance was used to generate a first draft of most files. Every file was
-reviewed, type-checked, built and exercised in a browser; the prompt log and the
-mistakes that were caught are in `docs/ai-prompts.md`.
+I used an AI coding agent for most of the first drafts and worked through it file
+by file rather than one big prompt. `docs/ai-prompts.md` is the log, including
+the prompts that produced broken output and what I did about it.
+
+The rule I set for myself: if a reviewer points at a line and asks why it is
+there, the answer is either in `docs/` or in the commit that added it. If it is
+in neither, that line should not be in the repository.

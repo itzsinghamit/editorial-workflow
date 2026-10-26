@@ -7,16 +7,31 @@
 
 ## Notes for the reviewer
 
-- The app runs on Vercel with a Turso (libSQL) database. Both are free tiers. If
-  the first request is slow, the serverless function is waking up.
-- Demo data is seeded: 17 articles across every status, four sections (one
-  archived), two editors and two writers, one overdue alert, one published
-  article with an open revision, and comments in the timeline.
-- Two editor accounts exist so you can see the self-approval rule without
-  getting stuck: an editor cannot approve their own article, so use the second
-  editor to complete an approval.
-- Scheduling a publish time in the past is rejected by design. To see the
-  overdue alert, use the seeded article that is already overdue.
+A few things that will save you time.
+
+The app is on Vercel and the database is Turso, both free tiers. Turso stays
+awake; the Vercel function may take a second on the first request. If the page
+hangs for a moment that is the cold start, not a broken deploy.
+
+Two editors are seeded on purpose. The self-approval rule blocks the editor who
+wrote the piece, so `editor@newsroom.test` will be refused on Maya's own
+articles. Use `editor2@newsroom.test` to finish that approval.
+
+If you want to see particular states without hunting for them:
+
+- **Overdue alert:** "The archive nobody catalogued" is Scheduled with a publish
+  time that has passed. It shows in `/alerts` and as the badge in the nav.
+- **Dismissed alert:** "What the fibre rollout missed" is also past its time but
+  already dismissed. Unpublish it, schedule it again for a minute or two into the
+  future, then reload after that time has passed: the alert is back.
+- **Open revision:** "Inside the lab testing cheaper batteries" is Published and
+  has a draft revision. The live body keeps serving while the revision goes
+  through its own review.
+- **Archived section:** Business is archived, so it is missing from the default
+  section list. Restore it from `/sections` and its articles come back with it.
+
+Scheduling a publish time in the past is rejected on purpose, so use the seeded
+overdue article instead of trying to create one by hand.
 
 ## Demo credentials
 

@@ -1,13 +1,16 @@
 # Decisions
 
+Seven calls, roughly in the order I made them. Two were reversals: the database
+and the Cache Components flag. Both are written up as they happened rather than
+as if I had known the answer from the start.
+
 ## Decision 1 — One Next.js application instead of a separate API
 
 - **Chose:** Next.js App Router with Server Components for reads and Server
   Actions for writes. One repository, one deployment.
-- **Rejected:** An Express API plus a React SPA. That is the stack I would
-  normally reach for, but it doubles the deployment surface and makes the
-  "permissions must be enforced on the server" requirement something I have to
-  prove twice.
+- **Rejected:** An Express API plus a React SPA. It doubles the deployment
+  surface and makes "permissions must be enforced on the server" something I
+  have to prove twice.
 - **Why:** Every mutation already runs on the server, so the rule checks live in
   the same functions that write the data. There is no client-side filtering to
   accidentally rely on.
@@ -16,8 +19,8 @@
 
 - **Chose:** SQLite-compatible libSQL through `@libsql/client`, a local file in
   development and Turso in production.
-- **Rejected:** Postgres on Supabase with Prisma. This was my first choice and I
-  started down that road.
+- **Rejected:** Postgres on Supabase with Prisma. The first version of
+  `lib/db/schema.ts` was written for it.
 - **Why:** The same driver and the same schema work locally and in production,
   with no Docker and no external service needed to run the app on my machine.
   Turso's free tier is enough for a demo and the connection is a URL plus token,

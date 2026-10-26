@@ -2,7 +2,7 @@
 
 ## Links
 
-- **GitHub repository:** `<public repo URL>`
+- **GitHub repository:** https://github.com/itzsinghamit/editorial-workflow
 - **Live application:** `<deployed URL>`
 
 ## Notes for the reviewer

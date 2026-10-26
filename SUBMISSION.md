@@ -13,9 +13,13 @@ The app is on Vercel and the database is Turso, both free tiers. Turso stays
 awake; the Vercel function may take a second on the first request. If the page
 hangs for a moment that is the cold start, not a broken deploy.
 
-Two editors are seeded on purpose. The self-approval rule blocks the editor who
-wrote the piece, so `editor@newsroom.test` will be refused on Maya's own
-articles. Use `editor2@newsroom.test` to finish that approval.
+Two editors are seeded on purpose, because the self-approval rule blocks the
+editor who wrote the piece. "What the desk changed after the first month" is
+authored by Maya and sits In review: open it as `editor@newsroom.test` and the
+Actions panel says "You wrote this article, so a different editor has to approve
+it" with no Approve button. The server rejects the same request if it is sent by
+hand. Switch to `editor2@newsroom.test` to approve it. The same rule applies to a
+revision: the editor who opened it cannot approve it.
 
 If you want to see particular states without hunting for them:
 

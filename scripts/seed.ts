@@ -251,6 +251,19 @@ const SEED_ARTICLES: SeedArticle[] = [
     updatedAt: ago(1),
   },
   {
+    // Authored by an editor on purpose: opening it as Maya shows the
+    // self-approval block without having to create anything first.
+    id: "a-desk-note",
+    sectionId: SECTION_IDS.politics,
+    authorId: USER_IDS.maya,
+    title: "What the desk changed after the first month",
+    body: "A month in, three things changed: writers submit earlier, revisions get their own review, and the calendar export replaced the Friday spreadsheet. This piece walks through what we kept and what we dropped.",
+    status: "in_review",
+    publishAt: null,
+    createdAt: ago(2),
+    updatedAt: ago(1),
+  },
+  {
     id: "a-ferry",
     sectionId: SECTION_IDS.politics,
     authorId: USER_IDS.ravi,

@@ -53,7 +53,7 @@ included.
 npm install
 cp .env.example .env.local        # DATABASE_URL=file:./dev.db
 npm run db:push                   # create the SQLite schema
-npm run db:seed                   # demo users, sections and 17 articles
+npm run db:seed                   # demo users, sections and 18 articles
 npm run dev
 ```
 

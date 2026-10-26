@@ -23,7 +23,7 @@ export default async function AppLayout({
           </h1>
         </div>
 
-        <Nav overdue={overdue} />
+        <Nav overdue={overdue} userId={user.id} role={user.role} />
 
         <div className="mt-auto rounded-lg bg-slate-800 p-3">
           <p className="text-sm font-medium text-white">{user.name}</p>

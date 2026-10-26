@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const LINKS = [
   { href: "/", label: "Dashboard" },
@@ -10,19 +10,47 @@ const LINKS = [
   { href: "/alerts", label: "Alerts" },
 ];
 
-export function Nav({ overdue }: { overdue: number }) {
+export function Nav({
+  overdue,
+  userId,
+  role,
+}: {
+  overdue: number;
+  userId: string;
+  role: string;
+}) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const myHref = `/articles?authorId=${userId}`;
+  const mineActive =
+    role === "writer" &&
+    pathname.startsWith("/articles") &&
+    searchParams.get("authorId") === userId;
+
+  const links =
+    role === "writer"
+      ? [
+          LINKS[0],
+          LINKS[1],
+          { href: myHref, label: "My articles" },
+          ...LINKS.slice(2),
+        ]
+      : LINKS;
 
   return (
     <nav className="flex flex-col gap-1">
-      {LINKS.map((link) => {
-        const active =
-          link.href === "/"
+      {links.map((link) => {
+        const active = link.label === "My articles"
+          ? mineActive
+          : link.href === "/"
             ? pathname === "/"
-            : pathname.startsWith(link.href);
+            : link.href === "/articles"
+              ? pathname.startsWith("/articles") && !mineActive
+              : pathname.startsWith(link.href);
         return (
           <Link
-            key={link.href}
+            key={link.label}
             href={link.href}
             className={`flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition ${
               active

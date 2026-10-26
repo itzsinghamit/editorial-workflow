@@ -68,9 +68,9 @@ overdue article instead of trying to create one by hand.
 
 ## How much time did you actually spend?
 
-Roughly 10–11 hours across two days: schema and setup (~2.5h), auth and
-sections (~2h), lifecycle and revisions (~3.5h), lists/bulk/dashboard/alerts
-(~3h), deployment and documentation (~2h).
+About 13 hours across two days: schema and setup (~2.5h), auth and sections
+(~2h), lifecycle and revisions (~3.5h), lists/bulk/dashboard/alerts (~3h),
+deployment and documentation (~2h). The plan I started with was the brief's 12.
 
 ## What would you do next, with another 12 hours?
 
